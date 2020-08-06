@@ -8,8 +8,9 @@ make10folds.py is for making 10-fold files.
 cox_lasso_10folds.R is for final survival analysis with LASSO-Cox model.
 Clinical_OV_label.csv contains id of patients and their survival time and status .  
 
-You need down the WSIs and clinical data from TCGA-OV. You need obtain status(0 for alive and 1 for dead) and survival time of patients in the clinical data.  
-And you need execute files in the order as follows to finish EOCSA framework)extract_patches.py->clusterByKmeans.py->split_train_test.py->DCAS.py->DCAS_weighted.py->make10folds.py->cox_lasso_10folds.R)
+You need download the WSIs and clinical data from TCGA-OV. You need obtain survival status(0 for alive and 1 for dead) and time of patients in the clinical data.  
+And you need execute files in the order as follows to finish EOCSA framework.
+(extract_patches.py->clusterByKmeans.py->split_train_test.py->DCAS.py->DCAS_weighted.py->make10folds.py->cox_lasso_10folds.R)
 
 Details:
 In extract_patches.py, you can use function 'write_path_to_csv' to write the path of WSIs to a csv file and use function 'get_patches' to extract patches from WSIs.
