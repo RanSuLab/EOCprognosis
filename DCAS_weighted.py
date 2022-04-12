@@ -82,18 +82,9 @@ def make_patient(path):
         csv = np.array(csv)
         features_num += len(csv)
         all_features.append(csv)
-    all_features = np.concatenate(all_features, axis=0)
-    all_features_pd = pd.DataFrame(all_features)
-    all_features_pd.to_csv('./DCAS_weighted/all_features.csv')
-
-    images = []
-    for name in all_features[:, 0]:
-        image_name = name.split('-')[0] + '-' + name.split('-')[1] + '-' + name.split('-')[2]
-        images.append(image_name)
-    images = np.reshape(images, (len(images), 1))
-    all_features_patient = np.concatenate((images, all_features[:, 1:]), axis=1)
+    all_features_patient = np.concatenate(all_features, axis=0)
     all_features_patient_pd = pd.DataFrame(all_features_patient)
-    all_features_patient_pd.to_csv('./DCAS_weighted/all_features_patient.csv', header=None, index=False)
+    all_features_patient_pd.to_csv('./DCAS_weighted/all_features_patient.csv', header=False, index=False)
 
     all_patient_names = all_features_patient[:, 0]
     patient_names = set(all_patient_names)
