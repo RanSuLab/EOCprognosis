@@ -11,7 +11,7 @@ import datetime
 from tensorflow.contrib.layers import l2_regularizer
 
 
-# 载入数据
+# load data
 def load_data(path,cluster_num):
 
     train_path = path + cluster_num+'_train.csv'
@@ -33,7 +33,7 @@ def load_data(path,cluster_num):
     return train_data_list, train_time_list, train_event_list, test_data_list, test_time_list, test_event_list
 
 
-# 得到batch
+# obtain batch
 def next_batch(xs, es, batch_size, start, size):
     start = start % round(size / batch_size)
     start = start * batch_size
@@ -52,7 +52,7 @@ def next_batch(xs, es, batch_size, start, size):
 
 
 
-# 得到按照生存时间由小到大排好序的batch
+# obtain batch which is sorted by survival time from smallest to largest
 def next_batch_order(xs, ts ,es, batch_size, start, size):
 
     start = start % round(size / batch_size)
@@ -131,7 +131,7 @@ def cbam(inputs, reduction_ratio, name=''):
         return refined_feature
 
 
-# 卷积神经网络
+# DCAS
 def DCAS(input,drop,training):
 
     # bn0 = tf.layers.batch_normalization(input, axis=3, name='bn0', training=training)
@@ -233,7 +233,6 @@ def train(train_data_list, train_time_list, train_event_list, cluster_num, batch
 
         sess.run(tf.global_variables_initializer())
 
-        # 迭代训练网络
         for it in range(epochs):
 
             c = list(zip(train_data_list, train_time_list, train_event_list))
