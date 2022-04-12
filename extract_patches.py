@@ -51,41 +51,15 @@ def judge_save(region,new_path,svs_name,patch_size,digit_num_all,digit_num_i,a,t
     min_value_2 = np.min(image)
 
 
-    # 像素值在200及以上为图像中背景部分
+    # pixel with a value larger than 200 belongs to background area
     count = int(np.sum(image<200))
-
-    count_0 = int(np.sum(image<30))
-    # print(count / (512 * 512),count_0)
-    if (count / (patch_size * patch_size)) > threshold and (count_0/(patch_size * patch_size))<0.3:
-            # and (max_value-min_value)<70 and (max_value_2-min_value_2)>150:
+    
+    if (count / (patch_size * patch_size)) > threshold:
         image_rgb.save(new_path + svs_name + '_' + '0' * (digit_num_all - digit_num_i) + str(a + 1) + '.tif')
         return True
     else:
         return False
 
-
-    # image_gray = region.convert('L')
-    # image_gray = np.array(image_gray)
-    # count_0 = int(np.sum(image_gray==0))
-    #
-    # image_rgb = region.convert('RGB')
-    # image = np.array(image_rgb)
-    # image_right= image < 200
-    # image_right = image_right + 0
-    # image_right = image_right.transpose()
-    # image_right_0 = image_right[0]
-    # image_right_1 = image_right[1]
-    # image_right_2 = image_right[2]
-    # image_right_final = image_right_0 + image_right_1 + image_right_2
-    # count = int(np.sum(image_right_final == 3))
-    # # print(count/(512 * 512))
-    #
-    # # print(count / (512 * 512),count_0)
-    # if count / (512 * 512) > threshold and count_0<100:
-    #     image_rgb.save(new_path + svs_name + '_' + '0' * (digit_num_all - digit_num_i) + str(a + 1) + '.tif')
-    #     return True
-    # else:
-    #     return False
 
 def cal_patches(level,slide,patch_size,patch_path,svs_name,patches_num,name,w,h,digit_num_all):
     finished_num = 0
